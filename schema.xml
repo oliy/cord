@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="stream_items" version="1.0">
+<types>
+    <fieldType name="text" class="solr.TextField" multiValued="false">
+      <analyzer>
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+      </analyzer>
+    </fieldType>
+    <fieldType name="string" class="solr.StrField" multiValued="false"/>
+    <fieldType name="int" class="solr.IntField" multiValued="false"/>
+    <fieldType name="tint" class="solr.TrieIntField" precisionStep="4" omitNorms="true" positionIncrementGap="0" multiValued="false"/>
+    <fieldType name="float" class="solr.FloatField" multiValued="false"/>
+    <fieldType name="double" class="solr.DoubleField" multiValued="false"/>
+    <fieldType name="long" class="solr.LongField" multiValued="false"/>
+    <fieldType name="tlong" class="solr.TrieLongField" precisionStep="8" omitNorms="true" positionIncrementGap="0" multiValued="false"/>
+    <fieldType name="binary" class="solr.BinaryField" multiValued="false"/>
+    <fieldType name="bool" class="solr.BoolField" multiValued="false"/>
+    <fieldType name="uuid" class="solr.UUIDField" multiValued="false"/>
+    <fieldType name="date" class="solr.DateField" multiValued="false"/>
+  </types>
+  <fields>
+    <field name="id" type="string" indexed="true" stored="true"/>
+    <field name="type" type="string" indexed="true" stored="true"/>
+    <field name="prival" type="int" indexed="true" stored="true"/>
+    <field name="facilityID" type="int" indexed="true" stored="true"/>
+    <field name="severityID" type="int" indexed="true" stored="true"/>
+    <field name="facility" type="string" indexed="true" stored="true"/>
+    <field name="severity" type="string" indexed="true" stored="true"/>
+    <field name="time" type="date" datetimeformat="yyyy-MM-dd'T'HH:mm:sss'Z'" indexed="true" stored="true"/>
+    <field name="host" type="string" indexed="true" stored="true"/>
+    <field name="message" type="text" indexed="true" stored="true"/>
+    <field name="text" type="text" indexed="true" stored="true"/>
+    <dynamicField name="label_*" type="string" indexed="true" stored="true"/>
+  </fields>
+
+  <copyField source="message" dest="text"/>
+  <uniqueKey>id</uniqueKey>
+  <defaultSearchField>message</defaultSearchField>
+</schema>
